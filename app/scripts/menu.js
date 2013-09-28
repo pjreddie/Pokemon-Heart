@@ -6,7 +6,7 @@
 var MenuItem = React.createClass({
   actions: {
       'Talk': ['first', 'second', 'third'],
-      'Accessories': ['sdklfj'],
+      'Items': ['sdklfj'],
       'Run!': ['really?!!']
   },
   click: function(event) {
@@ -30,7 +30,7 @@ var MenuItem = React.createClass({
 
 var topMenuItems =  [
   'Talk',
-  'Accessories',
+  'Items',
   'Run!'
 ]
 
@@ -54,10 +54,3 @@ var Menu = React.createClass({
     );
   }
 });
-
-setInterval(function() {
-  React.renderComponent(
-    <Menu />,
-    document.getElementById('menu')
-  );
-}, 100);
