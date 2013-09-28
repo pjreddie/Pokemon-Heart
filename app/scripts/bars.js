@@ -48,15 +48,14 @@ var TopBar = React.createClass({
   }
 });
 
-
 var BottomBar = React.createClass({
   render: function() {
     var createItem = function(itemText) {
       return <MenuItem name={itemText} />
     }
     return (
-      <div class='info bottomInfo'>
-        <MonsterInfo name='JoeBot'/>
+	 <div class='info bottomInfo'>
+        <MonsterInfo name={this.props.poke.name}/>
         <div class='bar bottomBar'>
           <HealthBar />
         </div>
