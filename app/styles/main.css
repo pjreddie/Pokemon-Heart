@@ -5,7 +5,9 @@
   border: 1px solid black;
 }
 .menuItem:hover {
-  background-color :#234;
-  color: white;
   cursor: pointer;
+}
+.menuItem:hover:before {
+    content:">";
+    margin-left:-8px;
 }

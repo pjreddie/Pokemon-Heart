@@ -1,0 +1,7 @@
+@font-face{
+    font-family:gameboy;
+    src: url('/styles/gameboy.ttf');
+}
+body{
+    font-family:gameboy !important;
+}
