@@ -1,3 +1,15 @@
+#container{
+    width:300px;
+    height:276px;
+    position:relative;
+    top:120px;
+}
+#gameboy{
+    background:url('/gameboy.svg') no-repeat;
+    margin:0 auto;
+    width:590px;
+    height:960px;
+}
 @font-face{
     font-family:gameboy;
     src: url('/styles/gameboy.ttf');

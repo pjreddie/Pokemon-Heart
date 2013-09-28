@@ -1,9 +1,3 @@
-#menu {
-}
-
-.menuItem {
-  border: 1px solid black;
-}
 .menuItem:hover {
   cursor: pointer;
 }
