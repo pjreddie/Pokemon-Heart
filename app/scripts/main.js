@@ -6,7 +6,7 @@ var PlayerSection = React.createClass({
   render: function() {
     return (
       <div>
-        <div class={"pokemon-"+this.props.poke.id}></div>
+        <div class={"pokemon-"+this.props.poke.id_number}></div>
         <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
         <Menu />
       </div>
@@ -18,7 +18,7 @@ var EnemySection = React.createClass({
   render: function() {
     return (
       <div>
-        <div class={"pokemon-"+this.props.poke.id}></div>
+        <div class={"pokemon-"+this.props.poke.id_number}></div>
         <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
         <Menu />
       </div>
