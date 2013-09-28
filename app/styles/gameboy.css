@@ -1,13 +1,19 @@
 .topBar{
+    position: absolute;
+    width: 50%;
     height:10px;
     overflow:hidden;
+    top: 30px;
+    left: 10%;
 }
 .bottomBar{
     position:absolute;
     bottom:0;
-    width:100%;
+    width:50%;
     overflow:hidden;
     height:10px;
+    right:10%;
+    bottom:30px;
 }
 
 #screen{
