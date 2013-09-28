@@ -38,9 +38,6 @@ var App = React.createClass({
     return (
       <div>
         <div class=''>
-          <TopBar />
-        </div>
-        <div class=''>
           <div class=''>
             <EnemySection poke={this.state.badPokemon} />
           </div>

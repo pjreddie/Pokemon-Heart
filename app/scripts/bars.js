@@ -39,7 +39,7 @@ var TopBar = React.createClass({
     }
     return (
       <div class='info topInfo'>
-          <MonsterInfo name='DavidBot'/>
+          <MonsterInfo name={this.props.poke.name} />
         <div class='bar topBar'>
           < HealthBar />
         </div>
