@@ -28,11 +28,27 @@ var TopBar = React.createClass({
       return <MenuItem name={itemText} />
     }
     return (
-      <div>
-        <div class='topBar'>
+      <div class='row'>
+        <div class='topBar col-sm-3'>
           < HealthBar />
         </div>
       </div>
     );
   }
 });
+
+
+var BottomBar = React.createClass({
+  render: function() {
+    var createItem = function(itemText) {
+      return <MenuItem name={itemText} />
+    }
+    return (
+      <div>
+        <div class='bottomBar'>
+          < HealthBar />
+        </div>
+      </div>
+    );
+  }
+})
