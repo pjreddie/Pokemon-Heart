@@ -3,9 +3,15 @@ var Game = function() {
 
    var movesLoaded = false;
    that.isReady = false;
+   that.readyQueue = [];
+
+   // crude onReady
+   that.onReady = function(f) {
+      that.readyQueue.push(f);
+   }
 
    that.moves = {};
-   that.pokemon = {}
+   that.pokemon = {};
    that.playerPokemon = [];
    that.computerPokemon = [];
 
@@ -17,8 +23,7 @@ var Game = function() {
       {
          return Monster({
             "name"         : "MissingNo",
-            "maxHP"        : 9999,
-            "currentHP"    : 9999,
+            "hp"        : 9999,
             "atk"          : 9999,
             "def"          : 9999,
             "speed"        : 9999,
@@ -26,7 +31,7 @@ var Game = function() {
             "evolveLevel"  : -1
          });
       } else {
-         return Monster(pokemon[id_number]);
+         return Monster(that.pokemon[id_number]);
       }
    }
 
@@ -34,7 +39,7 @@ var Game = function() {
    $.getJSON( "/moves.json", function(data) {
       $.each(data, function(key, val) {
          that.moves[key] = {
-            "name"   : val.name,
+         "name"   : val.name,
          "type"   : val.type,
          "pp"     : val.pp,
          "power"  : val.power
@@ -57,13 +62,11 @@ var Game = function() {
          "evolveLevel"  : val.evolveLevel,
          "attacks"      : []
          };
-
-        for (l in val.learnset) {
-           that.pokemon[key].attacks.push(l.move);
-        }
       });
 
-      that.isReady = true;
+      while (that.readyQueue.length > 0) {
+             (that.readyQueue.shift())();   
+      }
    });
 
    return that;
@@ -107,3 +110,13 @@ var Monster = function(spec) {
 
    return that;
 }
+
+Game.onReady( function() { 
+   var bulba = Game.genMonster(4);
+   var charm = Game.genMonster(4);
+   var squir = Game.genMonster(7);
+   var tmp = Game.getPlayerPokemon();
+   tmp.push(bulba);
+   tmp.push(charm);
+   tmp.push(squir);
+});
