@@ -54,7 +54,12 @@ var Monster = function(spec) {
       }
    };
 
+   that.getAttack = function(name) {
+      return {}; // TODO: implement
+   }
+
    that.isDead = function() {
+      console.log(that.name + " is " + ((that.hp < 0) ? "dead" : "alive") + "!");
       return that.hp < 0;
    };
 
