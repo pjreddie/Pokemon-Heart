@@ -1,3 +1,15 @@
+var Game = function() {
+   var that = {};
+
+   that.playerPokemon = [];
+   that.computerPokemon = [];
+
+   that.getPlayerPokemon = function() { return that.playerPokemon; };
+   that.getComputerPokemon = function() { return that.computerPokemon; };
+
+   return that;
+}();
+
 // Sets up the moves and pokemon data
 
 var moves = {};
