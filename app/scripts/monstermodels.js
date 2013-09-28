@@ -39,6 +39,10 @@ $.getJSON( "/pokemon.json", function(data) {
          "evolveLevel"  : val.evolveLevel
       };
    });
+
+   Game.getPlayerPokemon().push(getMonster(1));
+   Game.getPlayerPokemon().push(getMonster(4));
+   Game.getPlayerPokemon().push(getMonster(7));
 });
 
 // build a monster from spec
