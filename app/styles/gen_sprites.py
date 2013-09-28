@@ -1,5 +1,5 @@
-width = 60
-height = 60
+width = 120
+height = 120
 offx = 0
 offy = 0
 n = 15

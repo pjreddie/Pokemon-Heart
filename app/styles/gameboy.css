@@ -1,3 +1,29 @@
+.pokeList{
+display:none;
+}
+.poke{
+
+}
+.cocktail{
+    z-index: -2;
+    position:absolute;
+    width:100px;
+    bottom:100px;
+    left:100px;
+}
+.topPoke{
+z-index:-3;
+position:absolute;
+right:10px;
+top:30px;
+}
+.bottomPoke{
+z-index:-1;
+position:absolute;
+left:10px;
+bottom:50px;
+}
+
 .heart{
     height:12px;
     margin-left:4px;
@@ -54,10 +80,12 @@
     margin: 0 auto;
 }
 #gameboy{
+    position:relative;
     background:url('/gameboy.svg') no-repeat;
     margin:0 auto;
     width:590px;
     height:960px;
+    z-index:-5;
 }
 @font-face{
     font-family:gameboy;

@@ -8,7 +8,7 @@ var PokeList = React.createClass({
       return ( <span> * </span> )
     }
     return (
-      <div>
+      <div class="pokeList">
         { this.props.pokes.map(createEgg) }
       </div>
     )
