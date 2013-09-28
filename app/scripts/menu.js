@@ -10,6 +10,13 @@ var MenuItem = React.createClass({
       'Run!': ['really?!!']
   },
   click: function(event) {
+    if (this.actions[this.props.name]) {
+      menuItems = this.actions[this.props.name]
+    }
+    else {
+      console.log("DO action!")
+      
+    }
   },
   render: function() {
     return (
@@ -20,18 +27,19 @@ var MenuItem = React.createClass({
   }
 })
 
+
+var topMenuItems =  [
+  'Talk',
+  'Accessories',
+  'Run!'
+]
+
+var menuItems = topMenuItems
+
 var Menu = React.createClass({
   getInitialState: function() {
   },
   handleChange: function(event) {
-  },
-  menuItems:  [
-    'Talk',
-    'Accessories',
-    'Run!'
-  ],
-  menuClicked: function(event){
-    console.log('sdkjfsd')
   },
   render: function() {
     var createItem = function(itemText) {
@@ -40,14 +48,16 @@ var Menu = React.createClass({
     return (
       <div>
         <div class='menuContainer'>
-          { this.menuItems.map(createItem) }
+          { menuItems.map(createItem) }
         </div>
       </div>
     );
   }
 });
 
-React.renderComponent(
-  <Menu />,
-  document.getElementById('menu')
-);
+setInterval(function() {
+  React.renderComponent(
+    <Menu />,
+    document.getElementById('menu')
+  );
+}, 100);
