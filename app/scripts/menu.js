@@ -54,10 +54,3 @@ var Menu = React.createClass({
     );
   }
 });
-
-setInterval(function() {
-  React.renderComponent(
-    <Menu />,
-    document.getElementById('menu')
-  );
-}, 100);
