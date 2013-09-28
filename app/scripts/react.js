@@ -8,3 +8,4 @@ React.renderComponent(
   <HelloMessage name="John" />,
   document.getElementById('container')
 );
+
