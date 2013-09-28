@@ -1,3 +1,9 @@
+.menu{
+position: absolute;
+width: 100%;
+bottom:0;
+
+}
 .menuItem:hover {
   cursor: pointer;
 }
@@ -6,12 +12,3 @@
     margin-left:-8px;
 }
 
-.topBar {
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-.bottomBar {
-  border: 1px solid black;
-  border-radius: 10px;
-}

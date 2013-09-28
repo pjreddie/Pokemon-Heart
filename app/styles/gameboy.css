@@ -1,19 +1,35 @@
-.topBar{
+.info{
     position: absolute;
-    width: 50%;
-    height:10px;
-    overflow:hidden;
-    top: 30px;
-    left: 10%;
-}
-.bottomBar{
-    position:absolute;
-    bottom:0;
+    padding:2px;
     width:50%;
-    overflow:hidden;
+    height: 50px;
+    border: 3px solid #333;
+    border-radius: 5px 10px;
+}
+.topInfo{
+    top:5%;
+    left: 5%;
+}
+.bottomInfo{
+    width: 50%;
+    right:5%;
+    bottom:45px;
+}
+
+.bar{
+    position:relative;
+    left:10px;
+    top:2px;
     height:10px;
-    right:10%;
-    bottom:30px;
+    width: 80%;
+  border: 1px solid #333;
+  border-radius: 10px;
+    overflow:hidden;
+}
+
+.topBar {
+}
+.bottomBar {
 }
 
 #screen{

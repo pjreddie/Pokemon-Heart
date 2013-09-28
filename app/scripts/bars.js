@@ -6,8 +6,7 @@ var MonsterInfo = React.createClass({
   render: function() {
     return (
       <div>
-        <span>{ this.props.name }</span>
-        <img src={true ? "Female_Symbol.png" : "Male_Symbol.png" }/>
+        <span class="name">{ this.props.name }</span>
       </div>
     )
   }
@@ -39,10 +38,10 @@ var TopBar = React.createClass({
       return <MenuItem name={itemText} />
     }
     return (
-      <div class=''>
-        <div class='topBar'>
-          < HealthBar />
+      <div class='info topInfo'>
           <MonsterInfo name='DavidBot'/>
+        <div class='bar topBar'>
+          < HealthBar />
         </div>
       </div>
     );
@@ -56,9 +55,9 @@ var BottomBar = React.createClass({
       return <MenuItem name={itemText} />
     }
     return (
-      <div>
+      <div class='info bottomInfo'>
         <MonsterInfo name='JoeBot'/>
-        <div class='bottomBar'>
+        <div class='bar bottomBar'>
           <HealthBar />
         </div>
       </div>

@@ -47,7 +47,7 @@ var Menu = React.createClass({
     }
     return (
       <div>
-        <div class='menuContainer'>
+        <div class='menu'>
           { menuItems.map(createItem) }
         </div>
       </div>
