@@ -73,10 +73,13 @@ var BottomBar = React.createClass({
     }
     return (
 	 <div class='info bottomInfo'>
-        <PokeList pokes={this.props.pokes} />
         <MonsterInfo name={this.props.poke.name}/>
+<<<<<<< HEAD
           <div class='backbar'>
             <img class='heart' src='/heart.png' />
+=======
+        <PokeList pokes={this.props.pokes} />
+>>>>>>> slskdfj
         <div class='bar bottomBar'>
           <HealthBar max={this.props.poke.maxHP} curr={this.props.poke.currHP}/>
         </div>
