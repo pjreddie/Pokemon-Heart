@@ -2,6 +2,17 @@
  * @jsx React.DOM
  */
 
+var MonsterInfo = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <span>{ this.props.name }</span>
+        <img src={true ? "Female_Symbol.png" : "Male_Symbol.png" }/>
+      </div>
+    )
+  }
+})
+
 var HealthBar = React.createClass({
   getInitialState: function() {
   },
@@ -31,6 +42,7 @@ var TopBar = React.createClass({
       <div class=''>
         <div class='topBar'>
           < HealthBar />
+          <MonsterInfo name='DavidBot'/>
         </div>
       </div>
     );
@@ -45,8 +57,9 @@ var BottomBar = React.createClass({
     }
     return (
       <div>
+        <MonsterInfo name='JoeBot'/>
         <div class='bottomBar'>
-          < HealthBar />
+          <HealthBar />
         </div>
       </div>
     );
