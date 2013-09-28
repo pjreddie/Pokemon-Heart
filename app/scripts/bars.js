@@ -26,16 +26,11 @@ var MonsterInfo = React.createClass({
 })
 
 var HealthBar = React.createClass({
-  getInitialState: function() {
-    return { hpPercent: (this.props.curr / this.props.max) * 100 }
-  },
-  handleChange: function(event) {
-    return { hpPercent: (this.props.curr / this.props.max) * 100 }
-  },
   render: function() {
+    hpPercent = (this.props.curr / this.props.max) * 100
     return (
       <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-danger" role="progressbar" style={{width: this.state.hpPercent+'%'}}>
+        <div class="progress-bar progress-bar-danger" role="progressbar" style={{width: hpPercent+'%'}}>
           <span class="sr-only">80% Complete (danger)</span>
         </div>
       </div>

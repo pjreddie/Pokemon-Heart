@@ -41,6 +41,10 @@ var Menu = React.createClass({
   },
   handleChange: function(event) {
   },
+  back: function(event) {
+    console.log('heeloo')
+    menuItems = topMenuItems
+  },
   render: function() {
     var createItem = function(itemText) {
       return <MenuItem name={itemText} />

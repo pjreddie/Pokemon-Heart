@@ -15,6 +15,12 @@ var PlayerSection = React.createClass({
 })
 
 var EnemySection = React.createClass({
+  handleChange: function(event) {
+    console.log('here')
+  },
+  hit: function() {
+
+  },
   render: function() {
     return (
       <div>
@@ -28,12 +34,16 @@ var EnemySection = React.createClass({
 
 var App = React.createClass({
   getInitialState: function() {
+    console.log('here')
     return {
       playerPokes: this.props.game.getPlayerPokemon(),
       badPokes: this.props.game.getComputerPokemon(),
       playerPokemon: this.props.game.getPlayerPokemon()[0],
       badPokemon: this.props.game.getComputerPokemon()[0]
     }
+  },
+  handleChange: function(event) {
+    console.log('here')
   },
 
   render: function() {
