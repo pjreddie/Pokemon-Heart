@@ -2,10 +2,9 @@ var Game = function() {
    var that = {};
 
    var movesLoaded = false;
-   that.isReady = false;
-   that.readyQueue = [];
 
    // crude onReady
+   that.readyQueue = [];
    that.onReady = function(f) {
       that.readyQueue.push(f);
    }
@@ -39,11 +38,32 @@ var Game = function() {
    $.getJSON( "/moves.json", function(data) {
       $.each(data, function(key, val) {
          that.moves[key] = {
-         "name"   : val.name,
-         "type"   : val.type,
-         "pp"     : val.pp,
-         "power"  : val.power
+            "name"   : val.name,
+            "pp"     : val.pp
          };
+
+         // build the attack function
+         that.moves[key].func = function (poke1, poke2) {
+            var result = {};
+
+            if (val.moveType === "simple") { // just attempt attack
+               result.hitsOpponent = true;
+               var A = (2*poke1.level+10)/250;
+               var B = poke1.atk/poke2.def;
+               var C = val.power;
+               // TODO: implement this
+               //var STAB = (val.type == poke1.type) ? 1.5 : 1;
+               if (Math.random() < val.accuracy) {
+                  poke2.damage(A*B*C);
+                  result.hitAmount = A*B*C;
+                  result.hitConnected = true;
+               } else {
+                  result.hitConnected = false;
+               }
+            }
+
+            return result;
+         }
       });
       movesLoaded = true;
    });
@@ -54,14 +74,22 @@ var Game = function() {
          that.pokemon[key] = {
          "name"         : val.name,
          "id_number"    : key,
+         "type"         : val.type1,
          "hp"           : val.baseStats.hp,
          "atk"          : val.baseStats.atk,
          "def"          : val.baseStats.def,
+         "spAtk"        : val.baseStats.spAtk,
+         "spDef"        : val.baseStats.spDef,
          "speed"        : val.baseStats.speed,
          "evolveTo"     : val.evolveTo,
          "evolveLevel"  : val.evolveLevel,
          "attacks"      : []
          };
+
+        for (l in val.learnset) {
+           that.pokemon[key].attacks.push(val.learnset[l].move);
+        }
+
       });
 
       while (that.readyQueue.length > 0) {
@@ -77,11 +105,42 @@ var Monster = function(spec) {
 
    that.name = spec.name;
    that.id_number = spec.id_number;
+   that.type = spec.type;
    that.maxHP = spec.hp;
    that.currHP = spec.hp;
    that.atk = spec.atk;
    that.def = spec.def;
+   that.spAtk = spec.spAtk;
+   that.spDef = spec.spDef;
    that.speed = spec.speed;
+   that.level = 1;
+   that.attacks = {};
+
+   // add attacks
+   for (idx in spec.attacks)
+   {
+      var attack_name = spec.attacks[idx];
+      var attack_data = Game.moves[attack_name];
+      if (typeof attack_data != "undefined") {
+         that.attacks[attack_name] = {
+            "name"         : attack_data.name,
+            "maxPP"        : attack_data.pp,
+            "currPP"       : attack_data.pp,
+            "attackFunc"   : attack_data.func
+         };
+      }
+   }
+
+   that.useAttack = function(name, opp) {
+      if (typeof that.attacks[name] != "undefined") {
+         return that.attacks[name].attackFunc(that, opp);
+      } else {
+         console.log("Used invalid attack!");
+         return {};
+      }
+   }
+
+   that.levelUp = function() { that.level += 1; }
 
    that.damage = function(dmg) {
       that.currHP = that.currHP - dmg;
@@ -99,14 +158,17 @@ var Monster = function(spec) {
       }
    };
 
-   that.getAttacks = function() {
-      return that.attacks;
-   }
-
    that.isDead = function() {
       console.log(that.name + " is " + ((that.hp < 0) ? "dead" : "alive") + "!");
       return that.hp < 0;
    };
+
+   that.tryEvolve = function() {
+      if (that.level >= spec.evolveLevel) {
+         return Game.genMonster(spec.evolveTo);
+      }
+      return that;
+   }
 
    return that;
 }
