@@ -43,8 +43,11 @@ var TopBar = React.createClass({
     return (
       <div class='info topInfo'>
           <MonsterInfo name={this.props.poke.name} />
+          <div class='backbar'>
+            <img class='heart' src='/heart.png' />
         <div class='bar topBar'>
           <HealthBar max={this.props.poke.maxHP} curr={this.props.poke.currHP}/>
+        </div>
         </div>
       </div>
     );
@@ -59,8 +62,11 @@ var BottomBar = React.createClass({
     return (
 	 <div class='info bottomInfo'>
         <MonsterInfo name={this.props.poke.name}/>
+          <div class='backbar'>
+            <img class='heart' src='/heart.png' />
         <div class='bar bottomBar'>
           <HealthBar max={this.props.poke.maxHP} curr={this.props.poke.currHP}/>
+        </div>
         </div>
       </div>
     );

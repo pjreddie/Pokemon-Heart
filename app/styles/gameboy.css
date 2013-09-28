@@ -1,10 +1,16 @@
+.heart{
+    height:12px;
+    margin-left:4px;
+    margin-top:3px;
+}
 .info{
+    font-size:12px;
     position: absolute;
-    padding:2px;
+    padding:4px;
     width:50%;
     height: 50px;
     border: 3px solid #333;
-    border-radius: 5px 10px;
+    border-radius: 10px 5px;
 }
 .topInfo{
     top:5%;
@@ -15,14 +21,21 @@
     right:5%;
     bottom:45px;
 }
+.backbar{
+    position:relative;
+    margin:0 auto;
+    background-color:#333;
+  border-radius: 10px;
+}
 
 .bar{
-    position:relative;
-    left:10px;
-    top:2px;
-    height:10px;
-    width: 80%;
-  border: 1px solid #333;
+    position:absolute;
+    right:2px;
+    display:inline-block;
+    margin-left:1px;
+    width:80%;
+    height:12px;
+    margin-top:2px;
   border-radius: 10px;
     overflow:hidden;
 }
