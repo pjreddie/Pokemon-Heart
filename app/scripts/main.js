@@ -6,12 +6,13 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <div class='row'>
+        <div class=''>
           <TopBar />
         </div>
-        <div class='row'>
-          <div class='col-sm-6'></div>
-          <div class='col-sm-4'>
+        <div class=''>
+          <div class=''></div>
+          <div class=''>
+            <BottomBar />
             <Menu />
           </div>
         </div>

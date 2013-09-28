@@ -28,8 +28,8 @@ var TopBar = React.createClass({
       return <MenuItem name={itemText} />
     }
     return (
-      <div class='row'>
-        <div class='topBar col-sm-3'>
+      <div class=''>
+        <div class='topBar'>
           < HealthBar />
         </div>
       </div>
