@@ -1,3 +1,5 @@
+// Sets up the moves and pokemon data
+
 var moves = {};
 var pokemon = {}
 
@@ -26,6 +28,8 @@ $.getJSON( "/pokemon.json", function(data) {
       };
    });
 });
+
+// build a monster from spec
 
 var Monster = function(spec) {
    var that = {};
@@ -65,29 +69,6 @@ var Monster = function(spec) {
 
    return that;
 }
-
-//var Attack = function(name) {
-   //for (m in moves)
-   //{
-      //var move = moves[m];
-
-      //console.log(move.name);
-
-      //if (move.name === name)
-      //{
-         //return {
-            //"name"      : move.name,
-            //"type"      : move.type,
-            //"maxPP"     : move.pp,
-            //"currentPP" : move.pp,
-            //"power"     : move.power
-         //}
-      //}
-   //}
-
-   //return Attack("Struggle");
-//}
-
 
 var getMonster = function (id_number) {
    if (id_number < 1 || id_number > 151)
