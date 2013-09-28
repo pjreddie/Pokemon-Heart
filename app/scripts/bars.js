@@ -39,10 +39,6 @@ var HealthBar = React.createClass({
 })
 
 var TopBar = React.createClass({
-  getInitialState: function() {
-  },
-  handleChange: function(event) {
-  },
   render: function() {
     var createItem = function(itemText) {
       return <MenuItem name={itemText} />
@@ -67,7 +63,7 @@ var BottomBar = React.createClass({
       return <MenuItem name={itemText} />
     }
     return (
-	 <div class='info bottomInfo'>
+     <div class='info bottomInfo'>
         <PokeList pokes={this.props.pokes} />
         <MonsterInfo name={this.props.poke.name}/>
           <div class='backbar'>

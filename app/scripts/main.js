@@ -9,25 +9,18 @@ var PlayerSection = React.createClass({
         <img class="cocktail" src="table.png"></img>
         <div class={"poke bottomPoke pokemon-"+this.props.poke.id_number}></div>
         <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
-        <Menu />
+        <Menu pokes={this.props.pokes} poke={this.props.poke}/>
       </div>
     )
   }
 })
 
 var EnemySection = React.createClass({
-  handleChange: function(event) {
-    console.log('here')
-  },
-  hit: function() {
-
-  },
   render: function() {
     return (
       <div>
         <div class={"poke topPoke pokemon-"+this.props.poke.id_number}></div>
         <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
-        <Menu />
       </div>
     )
   }
@@ -35,7 +28,6 @@ var EnemySection = React.createClass({
 
 var App = React.createClass({
   getInitialState: function() {
-    console.log('here')
     return {
       playerPokes: this.props.game.getPlayerPokemon(),
       badPokes: this.props.game.getComputerPokemon(),
