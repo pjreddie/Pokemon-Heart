@@ -14,13 +14,16 @@ var MonsterInfo = React.createClass({
 
 var HealthBar = React.createClass({
   getInitialState: function() {
+    console.log(this.props.curr, this.props.max)
+    return { hpPercent: (this.props.curr / this.props.max) * 100 }
   },
   handleChange: function(event) {
+    return { hpPercent: (this.props.curr / this.props.max) * 100 }
   },
   render: function() {
     return (
       <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-danger" role="progressbar" style={{width: '80%'}}>
+        <div class="progress-bar progress-bar-danger" role="progressbar" style={{width: this.state.hpPercent+'%'}}>
           <span class="sr-only">80% Complete (danger)</span>
         </div>
       </div>
@@ -41,7 +44,7 @@ var TopBar = React.createClass({
       <div class='info topInfo'>
           <MonsterInfo name={this.props.poke.name} />
         <div class='bar topBar'>
-          < HealthBar />
+          <HealthBar max={this.props.poke.maxHP} curr={this.props.poke.currHP}/>
         </div>
       </div>
     );
@@ -57,7 +60,7 @@ var BottomBar = React.createClass({
 	 <div class='info bottomInfo'>
         <MonsterInfo name={this.props.poke.name}/>
         <div class='bar bottomBar'>
-          <HealthBar />
+          <HealthBar max={this.props.poke.maxHP} curr={this.props.poke.currHP}/>
         </div>
       </div>
     );
