@@ -17,45 +17,34 @@
         <!-- endbuild -->
     </head>
     <body>
-      <div class='container'>
-        <!--[if lt IE 10]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <div class='row'>
-        </div>
-        <div id='tst'></div>
+      <div id='container' class='container'>
+        <div id='stuff'></div>
+      </div>
 
-        <div class='row'>
-          <div class='col-sm-6'></div>
-          <div class='col-sm-4'>
-            <div id='menu'></div>
-          </div>
-        </div>
 
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jquery/jquery.js"></script>
+      <!-- build:js scripts/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/jquery/jquery.js"></script>
 
-        <!-- endbower -->
-        <!-- endbuild -->
-        <script src="bower_components/react/react.js"></script>
-        <script src="bower_components/react/JSXTransformer.js"></script>
-        <script type='text/jsx' src="scripts/menu.js"></script>
+      <!-- endbower -->
+      <!-- endbuild -->
+      <script src="bower_components/react/react.js"></script>
+      <script src="bower_components/react/JSXTransformer.js"></script>
+      <script type='text/jsx' src="scripts/main.js"></script>
+      <script type='text/jsx' src="scripts/menu.js"></script>
+      <script type='text/jsx' src="scripts/bars.js"></script>
 	     <script src="scripts/monstermodels.js"></script
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
 
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
-    </div>
-</body>
-</html>
+      <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+      <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+          function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+          e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+          e.src='//www.google-analytics.com/analytics.js';
+          r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+      </script>
+
+    </body>
+  </html>
