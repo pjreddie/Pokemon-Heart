@@ -13,28 +13,24 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/pokemon_sprites.css">
+        <link rel='stylesheet' href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <!-- endbuild -->
     </head>
     <body>
+      <div class='container'>
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        <img src=trans.png class="pokemon-3"></img>
-        <div class="hero-unit">
-          <div id='container'>
-            conatiner
-          </div>
-
-          <h1>'Allo, 'Allo!</h1>
-          <p>You now have</p>
-          <ul>
-            <li>HTML5 Boilerplate</li>
-
-
-          </ul>
+        <div class='row'>
         </div>
+        <div id='tst'></div>
 
+        <div class='row'>
+          <div class='col-sm-6'></div>
+          <div class='col-sm-4'>
+            <div id='menu'></div>
+          </div>
+        </div>
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -44,7 +40,7 @@
         <!-- endbuild -->
         <script src="bower_components/react/react.js"></script>
         <script src="bower_components/react/JSXTransformer.js"></script>
-        <script type='text/jsx' src="scripts/react.js"></script>
+        <script type='text/jsx' src="scripts/menu.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -59,5 +55,6 @@
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
+    </div>
 </body>
 </html>
