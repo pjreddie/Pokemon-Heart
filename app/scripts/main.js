@@ -30,9 +30,9 @@ var App = React.createClass({
   getInitialState: function() {
     return {
       playerPokes: this.props.game.getPlayerPokemon(),
-      badPokes: this.props.game.getPlayerPokemon(),
+      badPokes: this.props.game.getComputerPokemon(),
       playerPokemon: this.props.game.getPlayerPokemon()[0],
-      badPokemon: this.props.game.getPlayerPokemon()[1]
+      badPokemon: this.props.game.getComputerPokemon()[0]
     }
   },
 
