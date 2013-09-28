@@ -181,4 +181,12 @@ Game.onReady( function() {
    tmp.push(bulba);
    tmp.push(charm);
    tmp.push(squir);
+
+   var bulba = Game.genMonster(14);
+   var charm = Game.genMonster(24);
+   var squir = Game.genMonster(37);
+   var tmp = Game.getComputerPokemon();
+   tmp.push(bulba);
+   tmp.push(charm);
+   tmp.push(squir);
 });
