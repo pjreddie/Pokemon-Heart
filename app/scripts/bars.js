@@ -2,6 +2,19 @@
  * @jsx React.DOM
  */
 
+var PokeList = React.createClass({
+  render: function() {
+    var createEgg = function(poke) {
+      return ( <span> * </span> )
+    }
+    return (
+      <div>
+        { this.props.pokes.map(createEgg) }
+      </div>
+    )
+  }
+})
+
 var MonsterInfo = React.createClass({
   render: function() {
     return (
@@ -14,7 +27,6 @@ var MonsterInfo = React.createClass({
 
 var HealthBar = React.createClass({
   getInitialState: function() {
-    console.log(this.props.curr, this.props.max)
     return { hpPercent: (this.props.curr / this.props.max) * 100 }
   },
   handleChange: function(event) {
@@ -64,6 +76,7 @@ var BottomBar = React.createClass({
         <MonsterInfo name={this.props.poke.name}/>
           <div class='backbar'>
             <img class='heart' src='/heart.png' />
+        <PokeList pokes={this.props.pokes} />
         <div class='bar bottomBar'>
           <HealthBar max={this.props.poke.maxHP} curr={this.props.poke.currHP}/>
         </div>

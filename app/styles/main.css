@@ -12,3 +12,13 @@ bottom:0;
     margin-left:-8px;
 }
 
+.hit-base {
+  opacity: 1.0;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.hit {
+  opacity: 0.2
+}

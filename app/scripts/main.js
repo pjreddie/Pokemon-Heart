@@ -7,7 +7,7 @@ var PlayerSection = React.createClass({
     return (
       <div>
         <div class={"pokemon-"+this.props.poke.id}></div>
-        <BottomBar poke={this.props.poke}/>
+        <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
         <Menu />
       </div>
     )
@@ -19,7 +19,7 @@ var EnemySection = React.createClass({
     return (
       <div>
         <div class={"pokemon-"+this.props.poke.id}></div>
-        <TopBar poke={this.props.poke}/>
+        <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
         <Menu />
       </div>
     )
@@ -29,6 +29,8 @@ var EnemySection = React.createClass({
 var App = React.createClass({
   getInitialState: function() {
     return {
+      playerPokes: this.props.game.getPlayerPokemon(),
+      badPokes: this.props.game.getPlayerPokemon(),
       playerPokemon: this.props.game.getPlayerPokemon()[0],
       badPokemon: this.props.game.getPlayerPokemon()[1]
     }
@@ -39,10 +41,10 @@ var App = React.createClass({
       <div>
         <div class=''>
           <div class=''>
-            <EnemySection poke={this.state.badPokemon} />
+            <EnemySection pokes={this.state.badPokes} poke={this.state.badPokemon} />
           </div>
           <div class=''>
-            <PlayerSection poke={this.state.playerPokemon} />
+            <PlayerSection pokes={this.state.playerPokes} poke={this.state.playerPokemon} />
           </div>
         </div>
       </div>
