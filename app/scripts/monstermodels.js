@@ -193,7 +193,7 @@ Game.onReady( function() {
    tmp.push(squir);
    Game.currPlayerPokemon = Game.playerPokemon[0];
 
-   var bulba = Game.genMonster(14);
+   var bulba = Game.genMonster(44);
    var charm = Game.genMonster(24);
    var squir = Game.genMonster(37);
    var tmp = Game.computerPokemon;
