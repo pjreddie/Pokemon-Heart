@@ -44,10 +44,15 @@ var Game = function() {
    }
 
    that.switchTurn = function() {
-      var tmp = that.currProt;
-      that.currProt = that.currOpp;
-      that.currOpp = tmp;
       that.isComputersTurn = !that.isComputersTurn;
+      if(that.isComputersTurn) {
+        that.currProt = that.currComputerPokemon;
+        that.currOpp = that.currPlayerPokemon;
+      }
+      else {
+        that.currProt = that.currPlayerPokemon;
+        that.currOpp = that.currComupterPokemon;
+      }
       if (that.isComputersTurn) { that.runComputer(); }
       else { that.runPlayer(); }
    }
