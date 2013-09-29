@@ -11,11 +11,10 @@ var Game = function() {
 
    that.moves = {};
    that.pokemon = {};
+   that.currPlayerPokemon = {};
+   that.currComputerPokemon = {};
    that.playerPokemon = [];
    that.computerPokemon = [];
-
-   that.getPlayerPokemon = function() { return that.playerPokemon; };
-   that.getComputerPokemon = function() { return that.computerPokemon; };
 
    that.genMonster = function (id_number) {
       if (id_number < 1 || id_number > 151)
@@ -52,10 +51,12 @@ var Game = function() {
                var B = poke1.atk/poke2.def;
                var C = val.power;
                // TODO: implement this
-               //var STAB = (val.type == poke1.type) ? 1.5 : 1;
+               var isSTAB = (val.type == poke1.type);
+               console.log("Attack is STAB?: " + isSTAB);
+               var STAB = stab ? 1.5 : 1;
                if (Math.random() < val.accuracy) {
                   poke2.damage(A*B*C);
-                  result.hitAmount = A*B*C;
+                  result.hitAmount = A*B*C*STAB;
                   result.hitConnected = true;
                } else {
                   result.hitConnected = false;
@@ -177,16 +178,18 @@ Game.onReady( function() {
    var bulba = Game.genMonster(4);
    var charm = Game.genMonster(4);
    var squir = Game.genMonster(7);
-   var tmp = Game.getPlayerPokemon();
+   var tmp = Game.playerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
    tmp.push(squir);
+   Game.currPlayerPokemon = game.playerPokemon[0];
 
    var bulba = Game.genMonster(14);
    var charm = Game.genMonster(24);
    var squir = Game.genMonster(37);
-   var tmp = Game.getComputerPokemon();
+   var tmp = Game.computerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
    tmp.push(squir);
+   Game.currComputerPokemon = game.computerPokemon[0];
 });
