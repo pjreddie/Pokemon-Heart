@@ -17,12 +17,21 @@ var PlayerSection = React.createClass({
 
 var EnemySection = React.createClass({
   render: function() {
-    return (
-      <div>
-        <div class={"poke topPoke pokemon-"+this.props.poke.id_number}></div>
-        <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
-      </div>
-    )
+      if (this.props.poke.isDead()) {
+        return (
+           <div>
+           <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
+           </div>
+           )
+        }
+      else {
+        return (
+         <div>
+         <div class={"poke topPoke pokemon-"+this.props.poke.id_number}></div>
+         <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
+         </div>
+        )
+      }
   }
 })
 
