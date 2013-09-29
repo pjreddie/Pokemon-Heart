@@ -30,12 +30,42 @@ border-top:3px solid #333;
   opacity: 0.2
 }
 
-.fade {
-  opacity: 0.0;
+.died {
+  -webkit-transform: translate(124px, -50px)
+}
+
+.died.op {
+  -webkit-transform: translate(-124px, 50px)
+}
+
+.heart-icon {
+  -webkit-transform: translate(194px, -5px);
+}
+
+.heart-icon.op {
+  -webkit-transform: translate(34px, 50px);
 }
 
 .poke {
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
+  tansition: -webkit-transform, 1s ease-in-out;
+  -webkit-transition: -webkit-transform 1s ease-in-out;
 }
+
+.lose {
+  height: 280px;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.win {
+  height: 280px;
+  background-color: rgb(51, 82, 207);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  padding-top: 100px;
+}
+  }

@@ -4,14 +4,27 @@
 
 var PlayerSection = React.createClass({
   render: function() {
-    return (
-      <div>
-        <img class="cocktail" src="table.png"></img>
-        <div class={"poke bottomPoke pokemon-"+this.props.poke.id_number}></div>
-        <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
-        <Menu pokes={this.props.pokes} poke={this.props.poke}/>
-      </div>
-    )
+    if (this.props.poke.isDead()) {
+      return (
+         <div>
+          <img class="cocktail" src="table.png"></img>
+         <img src='bigheart.png' class='heart-icon' style={{width: '60px', height: '60px'}}/>
+         <div class={"poke died topPoke pokemon-"+this.props.poke.id_number}></div>
+          <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
+          <Menu pokes={this.props.pokes} poke={this.props.poke}/>
+         </div>
+         )
+      }
+    else {
+      return (
+        <div>
+          <img class="cocktail" src="table.png"></img>
+          <div class={"poke bottomPoke pokemon-"+this.props.poke.id_number}></div>
+          <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
+          <Menu pokes={this.props.pokes} poke={this.props.poke}/>
+        </div>
+      )
+    }
   }
 })
 
@@ -20,7 +33,8 @@ var EnemySection = React.createClass({
       if (this.props.poke.isDead()) {
         return (
            <div>
-         <div class={"poke fade topPoke pokemon-"+this.props.poke.id_number}></div>
+         <img src='bigheart.png' class='heart-icon op' style={{width: '60px', height: '60px'}}/>
+         <div class={"poke died op topPoke pokemon-"+this.props.poke.id_number}></div>
            <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
            </div>
            )
@@ -46,22 +60,45 @@ var App = React.createClass({
   },
 
   render: function() {
-    playerPokes = this.props.game.playerPokemon,
-    badPokes=  this.props.game.computerPokemon,
+
+    playerPokes = []
+    $.each(this.props.game.playerPokemon, function(i,e){
+      if (!e.isDead())
+        playerPokes.push(e)
+    })
+    badPokes = []
+    $.each(this.props.game.computerPokemon, function(i,e){
+      if (!e.isDead())
+        badPokes.push(e)
+    })
     playerPokemon = this.props.game.currPlayerPokemon,
     badPokemon =  this.props.game.currComputerPokemon
-    return (
-      <div>
-        <div class=''>
+    if (playerPokes.length == 0) {
+      return (
+        <div class='lose'>
+          <span class='title'>Mr right is out there somewhere, but he's not here</span>
+        </div>
+      )
+    } else if (badPokemon.length == 0) {
+      return (
+        <div class='win'>
+          <span class='title'> Your Love is unmatched </span>
+        </div>
+      )
+    }else {
+      return (
+        <div>
           <div class=''>
-            <EnemySection pokes={badPokes} poke={badPokemon} />
-          </div>
-          <div class=''>
-            <PlayerSection pokes={playerPokes} poke={playerPokemon} />
+            <div class=''>
+              <EnemySection pokes={badPokes} poke={badPokemon} />
+            </div>
+            <div class=''>
+              <PlayerSection pokes={playerPokes} poke={playerPokemon} />
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 })
 setTimeout(function(){
