@@ -169,7 +169,6 @@ var Monster = function(spec) {
    };
 
    that.isDead = function() {
-      console.log(that.name + " is " + ((that.currHP <= 0) ? "dead" : "alive") + "!");
       return that.currHP <= 0;
    };
 
