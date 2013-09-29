@@ -31,7 +31,7 @@ var MenuItem = React.createClass({
 var topMenuItems =  {
   'Talk': {
     'first': function() {
-      Game.playerPokemon[0].currHP -= 10
+      Game.currComputerPokemon.currHP -= 10
     }
   },
   'Items': {
