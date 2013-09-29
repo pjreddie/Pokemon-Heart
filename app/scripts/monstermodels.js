@@ -157,15 +157,14 @@ var Game = function() {
                }
             } else if (val.moveType === "applyStatus") {
                result.applyStatus = true;
-               //if (Math.random() < val.accuracy) {
+               if (Math.random() < val.accuracy) {
                   poke2.statusEffects.push(val.applyStatus);
                   result.missed = false;
-               //} else {
-                  //result.missed = true;
-               //}
+               } else {
+                  result.missed = true;
+               }
             }
 
-            console.log("blah");
             console.log(result);
             that.switchTurn();
             return result;
@@ -310,16 +309,22 @@ Game.onComputer( function() {
    console.log(Game.currProt);
    setTimeout(function(){
      for (key in poke.attacks) {
-        console.log("computer did"); poke.attacks[key](); break;
+        if (Math.random() > 0.5) {
+           poke.attacks[key](); break;
+        }
      }
    }, 1000)
    //Game.switchTurn();
 });
 
 Game.onReady( function() { 
-   var bulba = Game.genMonster(1, 'player');
-   var charm = Game.genMonster(4, 'player');
-   var squir = Game.genMonster(7, 'player');
+   var ids = [];
+   for (var i = 0; i < 6; i++) {
+      ids[i] = Math.round((Math.random()*150)+1);
+   }
+   var bulba = Game.genMonster(ids[0], 'player');
+   var charm = Game.genMonster(ids[1], 'player');
+   var squir = Game.genMonster(ids[2], 'player');
    var tmp = Game.playerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
@@ -327,9 +332,9 @@ Game.onReady( function() {
    Game.currPlayerPokemon = Game.playerPokemon[0];
    Game.currProt = Game.currPlayerPokemon;
 
-   var bulba = Game.genMonster(44);
-   var charm = Game.genMonster(5);
-   var squir = Game.genMonster(8);
+   var bulba = Game.genMonster(ids[3]);
+   var charm = Game.genMonster(ids[4]);
+   var squir = Game.genMonster(ids[5]);
 
    var tmp = Game.computerPokemon;
    tmp.push(bulba);
