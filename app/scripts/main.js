@@ -63,10 +63,11 @@ var App = React.createClass({
     )
   }
 })
-
-setInterval(function() {
-  React.renderComponent(
-    <App game={Game}/>,
-    document.getElementById('stuff')
-  );
-}, 100);
+setTimeout(function(){
+  setInterval(function() {
+    React.renderComponent(
+      <App game={Game}/>,
+      document.getElementById('stuff')
+    );
+  }, 100);
+}, 200)

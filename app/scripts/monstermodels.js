@@ -198,7 +198,7 @@ var Monster = function(spec) {
    };
    
    that.heal = function(hlth) {
-      that.currHP = that.currHP - hlth;
+      that.currHP = that.currHP + hlth;
       if (that.currHP > that.maxHP) { 
          console.log("Overflowed HP!");
          that.currHP = that.maxHP;
@@ -229,7 +229,7 @@ Game.onComputer( function() {
 });
 
 Game.onReady( function() { 
-   var bulba = Game.genMonster(4);
+   var bulba = Game.genMonster(1);
    var charm = Game.genMonster(4);
    var squir = Game.genMonster(7);
    var tmp = Game.playerPokemon;
