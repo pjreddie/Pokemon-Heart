@@ -1,6 +1,6 @@
 .pokemon-logo{
     position:absolute;
-    top:-150px;
+    top:-120px;
     z-index:1;
     height:500px;
     right:50%;
@@ -10,7 +10,7 @@
     bottom:200px;
     z-index:1;
     height:500px;
-    left:30%;
+    left:40%;
 }
 .pokeList{
 display:none;
