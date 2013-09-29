@@ -137,6 +137,7 @@ var Game = function() {
          // build the attack function
          that.moves[key].func = function (poke1, poke2) {
             var result = {};
+            speak(poke1['name'] + ' uses ' + val.name, {amplitude: 800})
             console.log("Attacking");
             console.log(val);
 
@@ -315,7 +316,7 @@ Game.onComputer( function() {
            poke.attacks[key](); break;
         }
      }
-   }, 1000)
+   }, 3000)
    //Game.switchTurn();
 });
 
