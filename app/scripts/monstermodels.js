@@ -330,7 +330,6 @@ Game.onReady( function() {
    var tmp = Game.playerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
-   tmp.push(squir);
    Game.currPlayerPokemon = Game.playerPokemon[0];
    Game.currProt = Game.currPlayerPokemon;
 
@@ -339,9 +338,8 @@ Game.onReady( function() {
    var squir = Game.genMonster(ids[5], 'computer');
 
    var tmp = Game.computerPokemon;
-   //tmp.push(bulba);
-   //tmp.push(charm);
-   tmp.push(squir);
+   tmp.push(bulba);
+   tmp.push(charm);
 
    Game.currComputerPokemon = Game.computerPokemon[0];
    Game.currOpp = Game.currComputerPokemon;

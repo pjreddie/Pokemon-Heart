@@ -68,6 +68,7 @@ var App = React.createClass({
     })
     badPokes = []
     $.each(this.props.game.computerPokemon, function(i,e){
+      console.log(e.isDead())
       if (!e.isDead())
         badPokes.push(e)
     })
@@ -79,7 +80,7 @@ var App = React.createClass({
           <span class='title'>Mr right is out there somewhere, but he's not here</span>
         </div>
       )
-    } else if (badPokemon.length == 0) {
+    } else if (badPokes.length == 0) {
       return (
         <div class='win'>
           <span class='title'> Your Love is unmatched </span>
