@@ -5,17 +5,24 @@
 
 var MenuItem = React.createClass({
   actions: {
-      'Talk': ['first', 'second', 'third'],
-      'Items': ['sdklfj'],
-      'Run!': ['really?!!']
+      'Talk': {'first': function() {
+        Game.playerPokemon[0].currHP -= 10
+      }}
+ //     'Items': ['sdklfj'],
+  //    'Run!': ['really?!!']
+  },
+
+  isFunction: function(x){
+    return Object.prototype.toString.call(x) == '[object Function]';
   },
   click: function(event) {
-    if (this.actions[this.props.name]) {
-      menuItems = this.actions[this.props.name]
-    }
-    else {
+    var thing = this.actions[this.props.name]
+    if (!this.isFunction(thing)) {
+      menuItems = Object.keys(thing)
+      this.actions = this.actions[this.props.name]
+    } else {
       console.log("DO action!")
-      
+      thing()
     }
   },
   render: function() {
@@ -46,8 +53,9 @@ var Menu = React.createClass({
     menuItems = topMenuItems
   },
   render: function() {
+    var that = this
     var createItem = function(itemText) {
-      return <MenuItem name={itemText} />
+      return <MenuItem name={itemText} pokes={that.props.pokes} poke={that.props.poke} />
     }
     return (
       <div>
