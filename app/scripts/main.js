@@ -17,22 +17,27 @@ var PlayerSection = React.createClass({
 
 var EnemySection = React.createClass({
   render: function() {
-    return (
-      <div>
-        <div class={"poke topPoke pokemon-"+this.props.poke.id_number}></div>
-        <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
-      </div>
-    )
+      if (this.props.poke.isDead()) {
+        return (
+           <div>
+           <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
+           </div>
+           )
+        }
+      else {
+        return (
+         <div>
+         <div class={"poke topPoke pokemon-"+this.props.poke.id_number}></div>
+         <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
+         </div>
+        )
+      }
   }
 })
 
 var App = React.createClass({
   getInitialState: function() {
     return {
-      playerPokes: this.props.game.playerPokemon,
-      badPokes: this.props.game.computerPokemon,
-      playerPokemon: this.props.game.currPlayerPokemon,
-      badPokemon: this.props.game.currComputerPokemon
     }
   },
   handleChange: function(event) {
@@ -40,14 +45,18 @@ var App = React.createClass({
   },
 
   render: function() {
+    playerPokes = this.props.game.playerPokemon,
+    badPokes=  this.props.game.computerPokemon,
+    playerPokemon = this.props.game.currPlayerPokemon,
+    badPokemon =  this.props.game.currComputerPokemon
     return (
       <div>
         <div class=''>
           <div class=''>
-            <EnemySection pokes={this.state.badPokes} poke={this.state.badPokemon} />
+            <EnemySection pokes={badPokes} poke={badPokemon} />
           </div>
           <div class=''>
-            <PlayerSection pokes={this.state.playerPokes} poke={this.state.playerPokemon} />
+            <PlayerSection pokes={playerPokes} poke={playerPokemon} />
           </div>
         </div>
       </div>

@@ -4,35 +4,18 @@
 
 
 var MenuItem = React.createClass({
-  actions: {
-      'Talk': {
-        'first': function() {
-          Game.playerPokemon[0].currHP -= 10
-        }
-      },
-      'Items': {
-        'potion': function() {
-          Game.playerPokemon[0].currHP += 10
-        }
-      },
-      'Run!': {
-        'Really?!!': function() {
-
-        }
-      }
-  },
-
   isFunction: function(x){
     return Object.prototype.toString.call(x) == '[object Function]';
   },
+
   click: function(event) {
-    var thing = this.actions[this.props.name]
+    var thing = menuItems[this.props.name]
+
     if (!this.isFunction(thing)) {
-      menuItems = Object.keys(thing)
-      this.actions = this.actions[this.props.name]
+      menuItems = thing
     } else {
-      console.log("DO action!")
       thing()
+      menuItems = topMenuItems()
     }
   },
   render: function() {
@@ -45,13 +28,33 @@ var MenuItem = React.createClass({
 })
 
 
-var topMenuItems =  [
-  'Talk',
-  'Items',
-  'Run!'
-]
+var topMenuItems = function(){
+  poke = Game.currPlayerPokemon
+  pswitch = {}
+  $.each(Game.playerPokemon, function(i,e) {
+    pswitch[e.name] = function(){
+      console.log('here')
+      Game.currPlayerPokemon = e
+    }
+  });
 
-var menuItems = topMenuItems
+  return {
+    'Talk': poke.attacks,
+    'Items': {
+        'potion': function() {
+          Game.playerPokemon[0].currHP += 10
+        }
+    },
+    'Poke': pswitch,
+    'Run!': {
+      'Really?!!': function() {
+
+      }
+    }
+  }
+}
+
+var menuItems = topMenuItems()
 
 var Menu = React.createClass({
   getInitialState: function() {
@@ -60,7 +63,7 @@ var Menu = React.createClass({
   },
   back: function(event) {
     console.log('heeloo')
-    menuItems = topMenuItems
+    menuItems = topMenuItems()
   },
   render: function() {
     var that = this
@@ -70,7 +73,7 @@ var Menu = React.createClass({
     return (
       <div>
         <div class='menu'>
-          { menuItems.map(createItem) }
+          { Object.keys(menuItems).map(createItem) }
         </div>
       </div>
     );
