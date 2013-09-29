@@ -37,6 +37,7 @@ bottom:50px;
     height: 50px;
     border: 3px solid #333;
     border-radius: 10px 5px;
+    background-color:#eee;
 }
 .topInfo{
     top:5%;
@@ -45,7 +46,7 @@ bottom:50px;
 .bottomInfo{
     width: 50%;
     right:5%;
-    bottom:45px;
+    bottom:70px;
 }
 .backbar{
     position:relative;
@@ -72,12 +73,16 @@ bottom:50px;
 }
 
 #screen{
-    width:300px;
-    height:277px;
+    width:302px;
+    height:279px;
     position:relative;
     top:120px;
     left: -2px;
     margin: 0 auto;
+    overflow:hidden;
+    border-radius:10px;
+    background-color:#eee;
+    z-index:0;
 }
 #gameboy{
     position:relative;
@@ -85,7 +90,7 @@ bottom:50px;
     margin:0 auto;
     width:590px;
     height:960px;
-    z-index:0;
+    z-index:10;
 }
 @font-face{
     font-family:gameboy;
