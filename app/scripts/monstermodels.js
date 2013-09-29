@@ -53,7 +53,7 @@ var Game = function() {
                // TODO: implement this
                var isSTAB = (val.type == poke1.type);
                console.log("Attack is STAB?: " + isSTAB);
-               var STAB = stab ? 1.5 : 1;
+               var STAB = isSTAB ? 1.5 : 1;
                if (Math.random() < val.accuracy) {
                   poke2.damage(A*B*C);
                   result.hitAmount = A*B*C*STAB;
@@ -115,29 +115,38 @@ var Monster = function(spec) {
    that.spDef = spec.spDef;
    that.speed = spec.speed;
    that.level = 1;
+   that.attackData = {};
    that.attacks = {};
 
    // add attacks
    for (idx in spec.attacks)
    {
+      if (idx >= 4) { continue; }
       var attack_name = spec.attacks[idx];
       var attack_data = Game.moves[attack_name];
       if (typeof attack_data != "undefined") {
-         that.attacks[attack_name] = {
-            "name"         : attack_data.name,
-            "maxPP"        : attack_data.pp,
-            "currPP"       : attack_data.pp,
-            "attackFunc"   : attack_data.func
-         };
-      }
-   }
 
-   that.useAttack = function(name, opp) {
-      if (typeof that.attacks[name] != "undefined") {
-         return that.attacks[name].attackFunc(that, opp);
-      } else {
-         console.log("Used invalid attack!");
-         return {};
+         (function (attack_name, attack_data) {
+
+            that.attackData[attack_name] = {
+               "name"         : attack_data.name,
+               "maxPP"        : attack_data.pp,
+               "currPP"       : attack_data.pp,
+               "attackFunc"   : attack_data.func
+            };
+
+            that.attacks[attack_name] = function() {
+               var my_attackData = that.attackData[attack_name];
+               if (my_attackData.currPP > 0)
+               {
+                  my_attackData.currPP -= 1;
+                  return attack_data.func(Game.currPlayerPokemon, Game.currComputerPokemon);
+               } else {
+                  console.log("Can't use attack" + attack_name);
+                  return {};
+               }
+            }
+         })(attack_name, attack_data);
       }
    }
 
@@ -161,7 +170,7 @@ var Monster = function(spec) {
 
    that.isDead = function() {
       console.log(that.name + " is " + ((that.hp < 0) ? "dead" : "alive") + "!");
-      return that.hp < 0;
+      return that.hp <= 0;
    };
 
    that.tryEvolve = function() {
