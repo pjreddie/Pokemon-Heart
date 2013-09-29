@@ -4,14 +4,26 @@
 
 var PlayerSection = React.createClass({
   render: function() {
-    return (
-      <div>
-        <img class="cocktail" src="table.png"></img>
-        <div class={"poke bottomPoke pokemon-"+this.props.poke.id_number}></div>
-        <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
-        <Menu pokes={this.props.pokes} poke={this.props.poke}/>
-      </div>
-    )
+    if (this.props.poke.isDead()) {
+      return (
+         <div>
+          <img class="cocktail" src="table.png"></img>
+         <div class={"poke fade topPoke pokemon-"+this.props.poke.id_number}></div>
+          <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
+          <Menu pokes={this.props.pokes} poke={this.props.poke}/>
+         </div>
+         )
+      }
+    else {
+      return (
+        <div>
+          <img class="cocktail" src="table.png"></img>
+          <div class={"poke bottomPoke pokemon-"+this.props.poke.id_number}></div>
+          <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
+          <Menu pokes={this.props.pokes} poke={this.props.poke}/>
+        </div>
+      )
+    }
   }
 })
 
@@ -20,6 +32,7 @@ var EnemySection = React.createClass({
       if (this.props.poke.isDead()) {
         return (
            <div>
+         <div class={"poke fade topPoke pokemon-"+this.props.poke.id_number}></div>
            <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
            </div>
            )
@@ -63,10 +76,11 @@ var App = React.createClass({
     )
   }
 })
-
-setInterval(function() {
-  React.renderComponent(
-    <App game={Game}/>,
-    document.getElementById('stuff')
-  );
-}, 100);
+setTimeout(function(){
+  setInterval(function() {
+    React.renderComponent(
+      <App game={Game}/>,
+      document.getElementById('stuff')
+    );
+  }, 100);
+}, 200)

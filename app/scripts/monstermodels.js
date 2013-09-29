@@ -44,10 +44,15 @@ var Game = function() {
    }
 
    that.switchTurn = function() {
-      var tmp = that.currProt;
-      that.currProt = that.currOpp;
-      that.currOpp = tmp;
       that.isComputersTurn = !that.isComputersTurn;
+      if(that.isComputersTurn) {
+        that.currProt = that.currComputerPokemon;
+        that.currOpp = that.currPlayerPokemon;
+      }
+      else {
+        that.currProt = that.currPlayerPokemon;
+        that.currOpp = that.currComputerPokemon;
+      }
       if (that.isComputersTurn) { that.runComputer(); }
       else { that.runPlayer(); }
    }
@@ -88,10 +93,10 @@ var Game = function() {
       currPoke.statusEffects = keepList;
    }
 
-   that.genMonster = function (id_number) {
+   that.genMonster = function (id_number, owner) {
       if (id_number < 1 || id_number > 151)
       {
-         return Monster({
+         mon = Monster({
             "name"         : "MissingNo",
             "hp"        : 9999,
             "atk"          : 9999,
@@ -101,9 +106,25 @@ var Game = function() {
             "evolveLevel"  : -1
          });
       } else {
-         return Monster(that.pokemon[id_number]);
+         var mon = Monster(that.pokemon[id_number]);
       }
+      mon.owner = owner
+      return mon
    }
+
+  that.compPickNewPoke = function() {
+    var poke; 
+    $.each(that.computerPokemon, function(i,e) {
+      if (!poke && !e.isDead()) {
+        poke = e
+      }
+    })
+
+    if (poke)
+      that.currComputerPokemon = poke
+    else
+      console.log('you win')
+  }
 
    // Load data
    $.getJSON( "/moves.json", function(data) {
@@ -168,7 +189,8 @@ var Game = function() {
          "speed"        : val.baseStats.speed,
          "evolveTo"     : val.evolveTo,
          "evolveLevel"  : val.evolveLevel,
-         "attacks"      : []
+         "attacks"      : [],
+         "owner"        : null
          };
 
         for (l in val.learnset) {
@@ -242,11 +264,20 @@ var Monster = function(spec) {
       if (that.currHP < 0) {
          console.log("Underflowed HP!");
          that.currHP = 0;
+         that.die()
       }
    };
+
+   that.die = function() {
+     setTimeout(function() {
+       if (that.owner == 'computer') {
+         Game.compPickNewPoke()
+       }
+     }, 500)
+   }
    
    that.heal = function(hlth) {
-      that.currHP = that.currHP - hlth;
+      that.currHP = that.currHP + hlth;
       if (that.currHP > that.maxHP) { 
          console.log("Overflowed HP!");
          that.currHP = that.maxHP;
@@ -273,16 +304,18 @@ Game.onComputer( Game.applyStatusEffects );
 Game.onComputer( function() {
    var poke = Game.currComputerPokemon;
    console.log(Game.currProt);
-   for (key in poke.attacks) {
-      console.log("computer did"); poke.attacks["poisonpowder"](); break;
-   }
+   setTimeout(function(){
+     for (key in poke.attacks) {
+        console.log("computer did"); poke.attacks[key](); break;
+     }
+   }, 1000)
    //Game.switchTurn();
 });
 
 Game.onReady( function() { 
-   var bulba = Game.genMonster(4);
-   var charm = Game.genMonster(4);
-   var squir = Game.genMonster(7);
+   var bulba = Game.genMonster(1, 'player');
+   var charm = Game.genMonster(4, 'player');
+   var squir = Game.genMonster(7, 'player');
    var tmp = Game.playerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
@@ -293,6 +326,7 @@ Game.onReady( function() {
    var bulba = Game.genMonster(44);
    var charm = Game.genMonster(5);
    var squir = Game.genMonster(8);
+
    var tmp = Game.computerPokemon;
    tmp.push(bulba);
    tmp.push(charm);

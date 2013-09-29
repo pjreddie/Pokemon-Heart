@@ -31,18 +31,20 @@ var MenuItem = React.createClass({
 var topMenuItems = function(){
   poke = Game.currPlayerPokemon
   pswitch = {}
+
   $.each(Game.playerPokemon, function(i,e) {
-    pswitch[e.name] = function(){
-      console.log('here')
-      Game.currPlayerPokemon = e
-    }
+    if (e != poke && !e.isDead())
+      pswitch[e.name] = function(){
+        Game.currPlayerPokemon = e
+        Game.switchTurn()
+      }
   });
 
-  return {
+  var menu = {
     'Talk': poke.attacks,
     'Items': {
         'potion': function() {
-          Game.playerPokemon[0].currHP += 10
+          Game.playerPokemon[0].heal(10)
         }
     },
     'Poke': pswitch,
@@ -52,9 +54,14 @@ var topMenuItems = function(){
       }
     }
   }
+
+  if (Game.currPlayerPokemon.isDead())
+    return menu['Poke']
+  else
+    return menu
 }
 
-var menuItems = topMenuItems()
+window.menuItems = topMenuItems()
 
 var Menu = React.createClass({
   getInitialState: function() {
