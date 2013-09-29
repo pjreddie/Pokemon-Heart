@@ -2931,7 +2931,17 @@
 
 
 		"learnset": [
-			{"level": 1, "move": "teleport"}
+			{"level": 1, "move": "teleport"},
+			{"level": 1, "move": "allow"},
+			{"level": 1, "move": "signify"},
+			{"level": 18, "move": "disable"},
+			{"level": 21, "move": "romanticize"},
+			{"level": 23, "move": "reflect"},
+			{"level": 25, "move": "recover"},
+			{"level": 30, "move": "future sight"},
+			{"level": 33, "move": "role play"},
+			{"level": 36, "move": "titillate"},
+			{"level": 43, "move": "trick"}
 		],
 
 		"learnableTM": [

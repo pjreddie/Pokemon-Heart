@@ -324,7 +324,7 @@ Game.onReady( function() {
    for (var i = 0; i < 6; i++) {
       ids[i] = Math.round((Math.random()*149)+1);
    }
-   var bulba = Game.genMonster(63, 'player');
+   var bulba = Game.genMonster(ids[0], 'player');
    var charm = Game.genMonster(ids[1], 'player');
    var squir = Game.genMonster(ids[2], 'player');
    var tmp = Game.playerPokemon;
