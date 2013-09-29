@@ -227,10 +227,11 @@ var Monster = function(spec) {
    // add attacks
    for (idx in spec.attacks)
    {
-      if (idx >= 4) { continue; }
+      if (Object.keys(that.attacks).length > 3) { continue; }
       var attack_name = spec.attacks[idx];
       var attack_data = Game.moves[attack_name];
       if (typeof attack_data != "undefined") {
+         console.log("attack_name: " + attack_name);
 
          (function (attack_name, attack_data) {
 
@@ -321,9 +322,9 @@ Game.onComputer( function() {
 Game.onReady( function() { 
    var ids = [];
    for (var i = 0; i < 6; i++) {
-      ids[i] = Math.round((Math.random()*150)+1);
+      ids[i] = Math.round((Math.random()*149)+1);
    }
-   var bulba = Game.genMonster(ids[0], 'player');
+   var bulba = Game.genMonster(63, 'player');
    var charm = Game.genMonster(ids[1], 'player');
    var squir = Game.genMonster(ids[2], 'player');
    var tmp = Game.playerPokemon;
