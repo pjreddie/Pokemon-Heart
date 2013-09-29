@@ -248,9 +248,11 @@ var Monster = function(spec) {
 Game.onComputer( function() {
    var poke = Game.currComputerPokemon;
    console.log(Game.currProt);
-   for (key in poke.attacks) {
-      console.log("computer did"); poke.attacks[key](); break;
-   }
+   setTimeout(function(){
+     for (key in poke.attacks) {
+        console.log("computer did"); poke.attacks[key](); break;
+     }
+   }, 1000)
    //Game.switchTurn();
 });
 

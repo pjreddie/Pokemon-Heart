@@ -36,6 +36,7 @@ var topMenuItems = function(){
     if (e != poke)
       pswitch[e.name] = function(){
         Game.currPlayerPokemon = e
+        Game.switchTurn()
       }
   });
 
