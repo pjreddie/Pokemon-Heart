@@ -16,6 +16,42 @@ var Game = function() {
    that.playerPokemon = [];
    that.computerPokemon = [];
 
+   // turn stuff
+   that.isComputersTurn = false;
+   that.currProt = {};
+   that.currOpp = {};
+   that.playerQueue = [];
+   that.computerQueue = [];
+
+   that.onPlayer = function(f) {
+      that.playerQueue.push(f);
+   }
+   
+   that.onComputer = function(f) {
+      that.computerQueue.push(f);
+   }
+
+   that.runPlayer = function() {
+      for (idx in that.playerQueue) {
+         that.playerQueue[idx]();
+      }
+   }
+
+   that.runComputer = function() {
+      for (idx in that.computerQueue) {
+         that.computerQueue[idx]();
+      }
+   }
+
+   that.switchTurn = function() {
+      var tmp = that.currProt;
+      that.currProt = that.currOpp;
+      that.currOpp = tmp;
+      that.isComputersTurn = !that.isComputersTurn;
+      if (that.isComputersTurn) { that.runComputer(); }
+      else { that.runPlayer(); }
+   }
+
    that.genMonster = function (id_number) {
       if (id_number < 1 || id_number > 151)
       {
@@ -47,22 +83,23 @@ var Game = function() {
 
             if (val.moveType === "simple") { // just attempt attack
                result.hitsOpponent = true;
-               var A = (2*poke1.level+10)/250;
-               var B = poke1.atk/poke2.def;
-               var C = val.power;
-               // TODO: implement this
+
                var isSTAB = (val.type == poke1.type);
-               console.log("Attack is STAB?: " + isSTAB);
                var STAB = isSTAB ? 1.5 : 1;
+               var randomNumber = (Math.random()*15)+85;
+               var totalDMG = ((((2 * poke1.level / 5 + 2) * poke1.atk * val.power / poke2.def) / 50) + 2) * STAB /** Weakness/Resistance*/ * randomNumber / 100;
+               console.log("damage " + totalDMG);
                if (Math.random() < val.accuracy) {
-                  poke2.damage(A*B*C);
-                  result.hitAmount = A*B*C*STAB;
+                  poke2.damage(totalDMG);
+                  result.hitAmount = totalDMG;
                   result.hitConnected = true;
                } else {
                   result.hitConnected = false;
                }
             }
 
+            console.log(result);
+            that.switchTurn();
             return result;
          }
       });
@@ -114,7 +151,7 @@ var Monster = function(spec) {
    that.spAtk = spec.spAtk;
    that.spDef = spec.spDef;
    that.speed = spec.speed;
-   that.level = 1;
+   that.level = 10;
    that.attackData = {};
    that.attacks = {};
 
@@ -140,7 +177,7 @@ var Monster = function(spec) {
                if (my_attackData.currPP > 0)
                {
                   my_attackData.currPP -= 1;
-                  return attack_data.func(Game.currPlayerPokemon, Game.currComputerPokemon);
+                  return attack_data.func(Game.currProt, Game.currOpp);
                } else {
                   console.log("Can't use attack" + attack_name);
                   return {};
@@ -182,6 +219,15 @@ var Monster = function(spec) {
    return that;
 }
 
+Game.onComputer( function() {
+   var poke = Game.currComputerPokemon;
+   console.log(Game.currProt);
+   for (key in poke.attacks) {
+      console.log("computer did"); poke.attacks[key](); break;
+   }
+   //Game.switchTurn();
+});
+
 Game.onReady( function() { 
    var bulba = Game.genMonster(4);
    var charm = Game.genMonster(4);
@@ -191,13 +237,15 @@ Game.onReady( function() {
    tmp.push(charm);
    tmp.push(squir);
    Game.currPlayerPokemon = Game.playerPokemon[0];
+   Game.currProt = Game.currPlayerPokemon;
 
-   var bulba = Game.genMonster(44);
-   var charm = Game.genMonster(24);
-   var squir = Game.genMonster(37);
+   var bulba = Game.genMonster(2);
+   var charm = Game.genMonster(5);
+   var squir = Game.genMonster(8);
    var tmp = Game.computerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
    tmp.push(squir);
    Game.currComputerPokemon = Game.computerPokemon[0];
+   Game.currOpp = Game.currComputerPokemon;
 });
