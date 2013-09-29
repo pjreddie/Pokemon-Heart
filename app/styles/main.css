@@ -2,7 +2,7 @@
 position: absolute;
 width: 100%;
 bottom:0;
-z-index:100;
+z-index:2;
 background-color:#ddd;
 border-top:3px solid #333;
 }
