@@ -45,12 +45,13 @@ var topMenuItems = function(){
     'Items': {
         'potion': function() {
           Game.playerPokemon[0].heal(10)
+          Game.switchTurn()
         }
     },
     'Poke': pswitch,
     'Run!': {
       'Really?!!': function() {
-
+        window.scared = true
       }
     }
   }
