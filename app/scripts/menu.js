@@ -15,7 +15,7 @@ var MenuItem = React.createClass({
       menuItems = thing
     } else {
       thing()
-      menuItems = topMenuItems
+      menuItems = topMenuItems()
     }
   },
   render: function() {
@@ -28,25 +28,25 @@ var MenuItem = React.createClass({
 })
 
 
-var topMenuItems =  {
-  'Talk': {
-    'first': function() {
-      Game.currComputerPokemon.damage(10)
-    }
-  },
-  'Items': {
-      'potion': function() {
-        Game.playerPokemon[0].currHP += 10
-      }
-  },
-  'Run!': {
-    'Really?!!': function() {
+var topMenuItems = function(){
+  poke = Game.currPlayerPokemon
+    console.log(poke)
+  return {
+    'Talk': poke.attacks,
+    'Items': {
+        'potion': function() {
+          Game.playerPokemon[0].currHP += 10
+        }
+    },
+    'Run!': {
+      'Really?!!': function() {
 
+      }
     }
   }
 }
 
-var menuItems = topMenuItems
+var menuItems = topMenuItems()
 
 var Menu = React.createClass({
   getInitialState: function() {
@@ -55,7 +55,7 @@ var Menu = React.createClass({
   },
   back: function(event) {
     console.log('heeloo')
-    menuItems = topMenuItems
+    menuItems = topMenuItems()
   },
   render: function() {
     var that = this
