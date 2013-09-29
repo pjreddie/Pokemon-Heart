@@ -16,6 +16,7 @@ border-top:3px solid #333;
 .menuItem{
     padding-top:10px;
     padding-bottom:10px;
+    text-transform: uppercase;
 }
 
 .hit-base {
