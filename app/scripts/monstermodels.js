@@ -268,6 +268,10 @@ var Monster = function(spec) {
       }
    };
 
+   that.isDead = function() {
+      return that.currHP <= 0;
+   }
+
    that.die = function() {
      setTimeout(function() {
        if (that.owner == 'computer') {
