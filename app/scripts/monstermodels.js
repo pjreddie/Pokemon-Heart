@@ -182,7 +182,7 @@ Game.onReady( function() {
    tmp.push(bulba);
    tmp.push(charm);
    tmp.push(squir);
-   Game.currPlayerPokemon = game.playerPokemon[0];
+   Game.currPlayerPokemon = Game.playerPokemon[0];
 
    var bulba = Game.genMonster(14);
    var charm = Game.genMonster(24);
@@ -191,5 +191,5 @@ Game.onReady( function() {
    tmp.push(bulba);
    tmp.push(charm);
    tmp.push(squir);
-   Game.currComputerPokemon = game.computerPokemon[0];
+   Game.currComputerPokemon = Game.computerPokemon[0];
 });
