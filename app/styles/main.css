@@ -28,3 +28,13 @@ border-top:3px solid #333;
 .hit {
   opacity: 0.2
 }
+
+.fade {
+  opacity: 0.0;
+}
+
+.poke {
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}

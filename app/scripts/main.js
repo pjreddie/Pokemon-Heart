@@ -20,6 +20,7 @@ var EnemySection = React.createClass({
       if (this.props.poke.isDead()) {
         return (
            <div>
+         <div class={"poke fade topPoke pokemon-"+this.props.poke.id_number}></div>
            <TopBar pokes={this.props.pokes} poke={this.props.poke}/>
            </div>
            )

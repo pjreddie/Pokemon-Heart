@@ -52,10 +52,10 @@ var Game = function() {
       else { that.runPlayer(); }
    }
 
-   that.genMonster = function (id_number) {
+   that.genMonster = function (id_number, owner) {
       if (id_number < 1 || id_number > 151)
       {
-         return Monster({
+         mon = Monster({
             "name"         : "MissingNo",
             "hp"        : 9999,
             "atk"          : 9999,
@@ -65,9 +65,25 @@ var Game = function() {
             "evolveLevel"  : -1
          });
       } else {
-         return Monster(that.pokemon[id_number]);
+         var mon = Monster(that.pokemon[id_number]);
       }
+      mon.owner = owner
+      return mon
    }
+
+  that.compPickNewPoke = function() {
+    var poke; 
+    $.each(that.computerPokemon, function(i,e) {
+      if (!poke && !e.isDead()) {
+        poke = e
+      }
+    })
+
+    if (poke)
+      that.currComputerPokemon = poke
+    else
+      console.log('you win')
+  }
 
    // Load data
    $.getJSON( "/moves.json", function(data) {
@@ -121,7 +137,8 @@ var Game = function() {
          "speed"        : val.baseStats.speed,
          "evolveTo"     : val.evolveTo,
          "evolveLevel"  : val.evolveLevel,
-         "attacks"      : []
+         "attacks"      : [],
+         "owner"        : null
          };
 
         for (l in val.learnset) {
@@ -194,8 +211,17 @@ var Monster = function(spec) {
       if (that.currHP < 0) {
          console.log("Underflowed HP!");
          that.currHP = 0;
+         that.die()
       }
    };
+
+   that.die = function() {
+     setTimeout(function() {
+       if (that.owner == 'computer') {
+         Game.compPickNewPoke()
+       }
+     }, 500)
+   }
    
    that.heal = function(hlth) {
       that.currHP = that.currHP + hlth;
@@ -229,9 +255,9 @@ Game.onComputer( function() {
 });
 
 Game.onReady( function() { 
-   var bulba = Game.genMonster(1);
-   var charm = Game.genMonster(4);
-   var squir = Game.genMonster(7);
+   var bulba = Game.genMonster(1, 'player');
+   var charm = Game.genMonster(4, 'player');
+   var squir = Game.genMonster(7, 'player');
    var tmp = Game.playerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
@@ -239,9 +265,9 @@ Game.onReady( function() {
    Game.currPlayerPokemon = Game.playerPokemon[0];
    Game.currProt = Game.currPlayerPokemon;
 
-   var bulba = Game.genMonster(2);
-   var charm = Game.genMonster(5);
-   var squir = Game.genMonster(8);
+   var bulba = Game.genMonster(2, 'computer');
+   var charm = Game.genMonster(5, 'computer');
+   var squir = Game.genMonster(8, 'computer');
    var tmp = Game.computerPokemon;
    tmp.push(bulba);
    tmp.push(charm);
