@@ -274,9 +274,10 @@ var Monster = function(spec) {
    that.die = function() {
      setTimeout(function() {
        if (that.owner == 'computer') {
+         console.log(that.owner)
          Game.compPickNewPoke()
        }
-     }, 500)
+     }, 1000)
    }
    
    that.heal = function(hlth) {
