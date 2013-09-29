@@ -4,14 +4,26 @@
 
 var PlayerSection = React.createClass({
   render: function() {
-    return (
-      <div>
-        <img class="cocktail" src="table.png"></img>
-        <div class={"poke bottomPoke pokemon-"+this.props.poke.id_number}></div>
-        <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
-        <Menu pokes={this.props.pokes} poke={this.props.poke}/>
-      </div>
-    )
+    if (this.props.poke.isDead()) {
+      return (
+         <div>
+          <img class="cocktail" src="table.png"></img>
+         <div class={"poke fade topPoke pokemon-"+this.props.poke.id_number}></div>
+          <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
+          <Menu pokes={this.props.pokes} poke={this.props.poke}/>
+         </div>
+         )
+      }
+    else {
+      return (
+        <div>
+          <img class="cocktail" src="table.png"></img>
+          <div class={"poke bottomPoke pokemon-"+this.props.poke.id_number}></div>
+          <BottomBar pokes={this.props.pokes} poke={this.props.poke}/>
+          <Menu pokes={this.props.pokes} poke={this.props.poke}/>
+        </div>
+      )
+    }
   }
 })
 

@@ -51,7 +51,7 @@ var Game = function() {
       }
       else {
         that.currProt = that.currPlayerPokemon;
-        that.currOpp = that.currComupterPokemon;
+        that.currOpp = that.currComputerPokemon;
       }
       if (that.isComputersTurn) { that.runComputer(); }
       else { that.runPlayer(); }
