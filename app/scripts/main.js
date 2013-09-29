@@ -29,10 +29,10 @@ var EnemySection = React.createClass({
 var App = React.createClass({
   getInitialState: function() {
     return {
-      playerPokes: this.props.game.getPlayerPokemon(),
-      badPokes: this.props.game.getComputerPokemon(),
-      playerPokemon: this.props.game.getPlayerPokemon()[0],
-      badPokemon: this.props.game.getComputerPokemon()[0]
+      playerPokes: this.props.game.playerPokemon,
+      badPokes: this.props.game.computerPokemon,
+      playerPokemon: this.props.game.currPlayerPokemon,
+      badPokemon: this.props.game.currComputerPokemon
     }
   },
   handleChange: function(event) {

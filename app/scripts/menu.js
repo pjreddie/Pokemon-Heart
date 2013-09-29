@@ -5,11 +5,21 @@
 
 var MenuItem = React.createClass({
   actions: {
-      'Talk': {'first': function() {
-        Game.playerPokemon[0].currHP -= 10
-      }}
- //     'Items': ['sdklfj'],
-  //    'Run!': ['really?!!']
+      'Talk': {
+        'first': function() {
+          Game.playerPokemon[0].currHP -= 10
+        }
+      },
+      'Items': {
+        'potion': function() {
+          Game.playerPokemon[0].currHP += 10
+        }
+      },
+      'Run!': {
+        'Really?!!': function() {
+
+        }
+      }
   },
 
   isFunction: function(x){
