@@ -333,14 +333,15 @@ Game.onReady( function() {
    Game.currPlayerPokemon = Game.playerPokemon[0];
    Game.currProt = Game.currPlayerPokemon;
 
-   var bulba = Game.genMonster(ids[3]);
-   var charm = Game.genMonster(ids[4]);
-   var squir = Game.genMonster(ids[5]);
+   var bulba = Game.genMonster(ids[3], 'computer');
+   var charm = Game.genMonster(ids[4], 'computer');
+   var squir = Game.genMonster(ids[5], 'computer');
 
    var tmp = Game.computerPokemon;
-   tmp.push(bulba);
-   tmp.push(charm);
+   //tmp.push(bulba);
+   //tmp.push(charm);
    tmp.push(squir);
+
    Game.currComputerPokemon = Game.computerPokemon[0];
    Game.currOpp = Game.currComputerPokemon;
 });
